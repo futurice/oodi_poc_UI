@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1 id="otsikko">{% block title %} Seuraa minua, vien sinut perille! :-) {% endblock %}</h1>
+{% endblock %}
+{#% block body %}
+  <script>
+  function poll()
+{% endblock %#}
+
+{% block content %}
+{% if direction == 'left' %}
+  <img src= {{ url_for('static', filename = 'images/leftarrow.jpg') }} alt="left arrow" height="100" width="100" id=leftarrow>
+{% elif direction == 'right' %}
+  <img src= {{ url_for('static', filename = 'images/rightarrow.jpg') }} alt="right arrow" height="100" width="100" id=rightarrow>
+{% else %}
+  <img src= {{ url_for('static', filename = 'images/uparrow.jpg') }} alt="up arrow" height="100" width="100" id=uparrow>
+{% endif %}
+{% endblock %}

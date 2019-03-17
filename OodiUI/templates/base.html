@@ -1,0 +1,30 @@
+<!doctype html>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<section class="content">
+  <header>
+    {% block header %}
+    <h1 id="header1">{% block title %}Voit etsiä teoksia nimen tai kategorian perusteella!{% endblock %}</h1>
+    {% endblock %}
+  </header>
+  {% block content %}
+  Avoin haku
+  <br />
+  <form action = "http://localhost:5000/term_result" method = "POST">
+    <input type="text" name="searchfield" size="80" id="search-box">
+    <input type="submit" value="Etsi" id="submit-box">
+  </form>
+  <br />
+  <br />
+  <br />
+  Kategoriat
+  <br />
+    <a href="http://localhost:5000/guidance_category?category=Taidekirjat" value="Taidekirjat" name="categoryname">Taidekirjat</a>
+    <a href="http://localhost:5000/guidance_category?category=Matkailu" value="Matkailu" name="categoryname">Matkailu</a>
+    <a href="http://localhost:5000/guidance_category?category=Keittokirjat" value="Keittokirjat" name="categoryname">Keittokirjat</a>
+    <a href="http://localhost:5000/guidance_category?category=Kielet" value="Kielet" name="categoryname">Kielet</a>
+    <a href="http://localhost:5000/guidance_category?category=Elämänkerrat" value="Elämänkerrat" name="categoryname">Elämänkerrat</a>
+    <a href="http://localhost:5000/guidance_category?category=Historia" value="Historia" name="categoryname">Historia</a>
+  {% endblock %}
+</section>
+
+<!-- tee js-file jonka includeed tahan, tarkistaa ootko iskeny tekstikenttaan mitaan-->

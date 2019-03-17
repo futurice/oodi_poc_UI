@@ -1,0 +1,10 @@
+#header1 {
+  font-size: 30px;
+  position: relative;
+  text-align: center;
+}
+
+#search-box {
+  width: 1000px;
+  height: 30px;
+}
