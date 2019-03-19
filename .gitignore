@@ -1,5 +1,7 @@
+__pycache__
 venv/
 instance
 .sierra_auth
 mir.db
 sierra/
+venv
