@@ -7,13 +7,16 @@
   <script>
   function poll()
 {% endblock %#}
-
 {% block content %}
-{% if direction == 'left' %}
+{% if arrow == 'l' %}
   <img src= {{ url_for('static', filename = 'images/leftarrow.jpg') }} alt="left arrow" height="100" width="100" id=leftarrow>
-{% elif direction == 'right' %}
+{% elif arrow == 'r' %}
   <img src= {{ url_for('static', filename = 'images/rightarrow.jpg') }} alt="right arrow" height="100" width="100" id=rightarrow>
 {% else %}
   <img src= {{ url_for('static', filename = 'images/uparrow.jpg') }} alt="up arrow" height="100" width="100" id=uparrow>
 {% endif %}
+{% endblock %}
+{% block head %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='arrow.js') }}"></script>
 {% endblock %}

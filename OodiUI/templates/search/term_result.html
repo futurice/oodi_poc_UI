@@ -20,6 +20,7 @@
   {% for b_id, b_info in books.items() %}
     <a href="http://localhost:5000/term_result/guidance_term?title={{b_info['title']}}&id={{b_id}}">{{b_info['title']}}</a>
     {{b_info['author']}}
+    <br />
     {#{% for key in b_info %}
       <a href="http://localhost:5000/term_result/guidance_term">{{b_info['title']}}</a>
     {% endfor %} #}

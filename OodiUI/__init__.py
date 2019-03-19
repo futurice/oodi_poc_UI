@@ -1,8 +1,7 @@
 import os
-#importtaa sierra
-
 from flask import(
     Flask, flash, g, redirect, render_template, request, session, url_for)
+import sierra
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -20,37 +19,28 @@ def create_app(test_config=None):
     @app.route('/', methods=['POST', 'GET'])
     def search_screen():
         if request.method == 'POST':
-            searchterm = request.form['searchfield']
-            error = None
-            print("jee")
+            #searchterm = request.form['searchfield']
+            #error = None
             #send searchterm forward to the sierra api?
             #if result == "":
             #    error = 'Kirjoita hakukenttään avainsana.'
-
-            #if error is None:
-            ##else:
-                #insert method to fetch information from sierra api HERE!!
-            ##    print('ei virheitä hienoa!!!')
-            ##    return render_template('search/results.html', haku_result = result ) #render to the template with the results
-                #return redirect(url_for('search.term_results')) #render temp
             flash(error)
         return render_template('base.html')
 
     @app.route('/term_result', methods=['POST', 'GET'])
     def start():
-        #searchterm = request.form['searchfield']
-        #print(searchterm)
-        books = { 1469241: {'title': 'Frantsilan yrttitilan kasviskeittokirja', 'author': 'Raipala-Cormier, Virpi'},
-        2251846: {'title': 'Uusimaa kuvissa : tarinoita ja tunnelmia Karkkilasta, Loviisasta, Porvoosta ja Vihdistä', 'author': 'Joku tyyppi'}}
-        #ask sierra for the results
-        return render_template('search/term_result.html', books = books)
+        searchterm = request.form['searchfield']
+        print(searchterm)
+        books = sierra.search_shelved_books(searchterm)
 
+        return render_template('search/term_result.html', books = books)
         #return render_template('search/term_result.html', searchterm = searchterm)
 
     @app.route('/term_result/guidance_term', methods=['POST', 'GET'])
     def guidance_term():
         bookname = request.args.get('title')
         book_id = request.args.get('id')
+        #book_id = sierra.add_new_book_mission(id)
         print(bookname)
         print(book_id)
 
@@ -61,26 +51,32 @@ def create_app(test_config=None):
         #categoryname = request.form['categoryname']
         #print(categoryname)
         categoryname = request.args.get('category')
+        section = request.args.get('id')
+        print("section", section)
         print("category", categoryname)
+        #sierra.insert_into_mission_table(section)
 
-        return render_template('/search/guidance_category.html', categoryname = categoryname)
+        return render_template('/search/guidance_category.html', categoryname = categoryname, section = section)
 
     #from . import search
     #app.register_blueprint(search.bp)
 
-    @app.route('create_arrow', methods=['GET'])
+    @app.route('/create_arrow', methods=['GET'])
     def create_arrow():
-        #msg = request.form['foo'] UNCOMMENT THIS
+        msg = request.form['foo']
         with open("direction.txt", "w+") as the_file:
             the_file.write('{}'.format(msg))
-        #close file
         return 200
 
-    @app.route('get_arrow', )
+    @app.route('/get_arrow', methods=['POST'])
     def read_arrow():
-        with open("direction.txt", "r") as the_file:
-            arrow = the_file.read()
-
+        arrow = request.form['arrow_data']
+        #with open("direction.txt", "r") as the_file: MUOKKAAAAA
+        #    arrow = the_file.read()
+        #if os.path.exists("direction.txt"):
+        #    os.remove("direction.txt")
+        #else:
+        #    print("The file doesn't exist")
         return redirect(url_for('/guidance'), arrow = arrow)
 
     @app.route('/guidance', methods=['POST', 'GET'])
@@ -88,13 +84,16 @@ def create_app(test_config=None):
         direction = ''
         book_id = request.args.get('id')
         category = request.args.get('category')
+        section_id = request.args.get('category_id')
         print(book_id)
         print(category)
         if book_id != None:
             print("we have an ID!")
+            sierra.add_new_book_mission(book_id)
             #send a signal to pick up a book from its location
         else:
             print("we have a category!")
+            sierra.insert_into_mission_table(section_id)
             #send a signal to go to a category
 
         #if direction == 'left':

@@ -1,2 +1,5 @@
-venv
+venv/
 instance
+.sierra_auth
+mir.db
+sierra/
