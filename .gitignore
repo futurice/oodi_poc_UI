@@ -5,3 +5,4 @@ instance
 mir.db
 sierra/
 venv
+__pycache__/
