@@ -20,6 +20,11 @@ def create_app(test_config=None):
         pass
 
     @app.route('/', methods=['POST', 'GET'])
+    def start_screen():
+
+        return render_template('start.html')
+
+    @app.route('/main', methods=['POST', 'GET'])
     def search_screen():
         config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
         if config.is_file():
@@ -64,9 +69,6 @@ def create_app(test_config=None):
 
         return render_template('/search/guidance_category.html', categoryname = categoryname, section = section)
 
-    #from . import search
-    #app.register_blueprint(search.bp)
-
     @app.route('/create_arrow', methods=['GET'])
     def create_arrow():
         msg = request.form['foo']
@@ -81,7 +83,6 @@ def create_app(test_config=None):
         if config.is_file():
             print("file exists")
             f = open("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt", "r")
-            #arrow = "{}".format(f.read())
             #os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
             arrow = f.read()
             arrow = arrow.rstrip('\n')
@@ -90,30 +91,6 @@ def create_app(test_config=None):
         else:
             print("return some arrow")
             return arrow
-
-        #if request.method == 'GET':
-        #    print("we are in GET")
-        #return arrow
-        #if request.method == 'POST':
-        #    arrow = request.form["arrow_data"]
-        #    print(arrow)
-        #return "arrow saatu"
-        #arrow = request.form['arrow_data']
-        #if request.method == 'GET':
-        #if os.path.isfile("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt"):
-
-        #arrow2 = "{}".format(str(msg))
-        #print("arrow",arrow)
-        #os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
-        #return "jee"
-        #else:
-    #if arrow != "-":
-        #print("arrow tokan kerran", arrow)
-        #print("arrow2 on", arrow2)
-        #arrow = "{}".format(arrow2)
-        #return redirect(url_for('/guidance'), arrow = arrow)
-
-        #return arrow
 
     @app.route('/guidance', methods=['POST', 'GET'])
     def guide():
@@ -132,14 +109,27 @@ def create_app(test_config=None):
             sierra.insert_into_mission_table(section_id)
             #send a signal to go to a category
 
-        #if direction == 'left':
-        #    return redirect(url_for('/guidance', direction = direction))
-        #elif direction == 'right':
-    #        return redirect(url_for('/guidance', direction = direction))
-    #    elif direction == 'forward':
-    #        return redirect(url_for('/guidance', direction = direction))
-    #    else:
-        #initiate the guiding scenario
-        #if signal comes back, go to feedback section
         return render_template('/search/guidance.html')
+
+
+    @app.route('/going_home', methods=['POST', 'GET'])
+    def mission_finished():
+
+        return render_template('/search/going_home.html')
+
+    @app.route('/back_home', methods=['POST', 'GET'])
+    def go_home():
+        msg = "-"
+        #look for a file and if the file contains "home" then redirect to the start page
+        config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/home.txt")
+        if config.is_file():
+            print("file exists")
+            f = open("/Users/nulm/Desktop/OodiMir/OodiUI/static/home.txt", "r")
+            msg = f.read()
+            msg = msg.rstrip('\n')
+            return msg
+        else:
+            print("not home yet")
+            return msg
+
     return app

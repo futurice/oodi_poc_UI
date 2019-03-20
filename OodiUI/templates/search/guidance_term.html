@@ -7,7 +7,7 @@ Lähdetäänkö hakemaan teosta: {{bookname}} {#Kalastamisen salat tilalle keywo
 {% endblock %}
 
 {% block content %} {#use url_for so that you get the book you chose in term_result.html #}
-<a href="http://localhost:5000/" id="no-sign">Takaisin alkuun.</a>
-<a href="http://localhost:5000/guidance?id={{book_id}}" id="yes-sign">Kyllä.</a>
+<a href="/main" id="no-sign">Takaisin alkuun.</a>
+<a href="/guidance?id={{book_id}}" id="yes-sign">Kyllä.</a>
 
 {% endblock %}

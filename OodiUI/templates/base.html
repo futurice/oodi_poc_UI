@@ -9,21 +9,22 @@
   {% block content %}
   Avoin haku
   <br />
-  <form action = "http://localhost:5000/term_result" method = "POST">
+  <form action = "/term_result" method = "POST">
     <input type="text" name="searchfield" size="80" id="search-box">
     <input type="submit" value="Etsi" id="submit-box">
   </form>
   <br />
+  <a href="/" id="go-to-start2">Takaisin alkuun</a>
   <br />
   <br />
   Kategoriat
   <br />
-    <a href="http://localhost:5000/guidance_category?category=Taidekirjat&id=790" value="Taidekirjat" name="categoryname">Taidekirjat</a>
-    <a href="http://localhost:5000/guidance_category?category=Matkailu&id=469" value="Matkailu" name="categoryname">Matkailu</a>
-    <a href="http://localhost:5000/guidance_category?category=Keittokirjat&id=691.1" value="Keittokirjat" name="categoryname">Keittokirjat</a>
-    <a href="http://localhost:5000/guidance_category?category=Kielet&id=850" value="Kielet" name="categoryname">Kielet</a>
-    <a href="http://localhost:5000/guidance_category?category=Elämänkerrat&id=990" value="Elämänkerrat" name="categoryname">Elämänkerrat</a>
-    <a href="http://localhost:5000/guidance_category?category=Historia&id=900" value="Historia" name="categoryname">Historia</a>
+    <a href="/guidance_category?category=Taidekirjat&id=790" value="Taidekirjat" name="categoryname">Taidekirjat</a>
+    <a href="/guidance_category?category=Matkailu&id=469" value="Matkailu" name="categoryname">Matkailu</a>
+    <a href="/guidance_category?category=Keittokirjat&id=691.1" value="Keittokirjat" name="categoryname">Keittokirjat</a>
+    <a href="/guidance_category?category=Kielet&id=850" value="Kielet" name="categoryname">Kielet</a>
+    <a href="/guidance_category?category=Elämänkerrat&id=990" value="Elämänkerrat" name="categoryname">Elämänkerrat</a>
+    <a href="/guidance_category?category=Historia&id=900" value="Historia" name="categoryname">Historia</a>
   {% endblock %}
 </section>
 {% block head %}

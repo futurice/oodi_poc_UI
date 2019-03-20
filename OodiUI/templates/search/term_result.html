@@ -8,17 +8,17 @@
 {% block content %}
   Avoin haku
   <br />
-  <form action = "http://localhost:5000/term_result" method = "POST"> {#this needs to look for new books#}
+  <form action = "/term_result" method = "POST"> {#this needs to look for new books#}
     <input type="text" name="searchfield" size="80">
     <input type="submit" value="Etsi" id="submit-box">
   </form>
-  <a href="http://localhost:5000/" id="back-to-start">Takaisin alkuun.</a>
+  <a href="/main" id="back-to-main">Takaisin alkuun.</a>
   <br />
   <br />
   <br />
   <br />
   {% for b_id, b_info in books.items() %}
-    <a href="http://localhost:5000/term_result/guidance_term?title={{b_info['title']}}&id={{b_id}}">{{b_info['title']}}</a>
+    <a href="/term_result/guidance_term?title={{b_info['title']}}&id={{b_id}}">{{b_info['title']}}</a>
     {{b_info['author']}}
     <br />
     {#{% for key in b_info %}
