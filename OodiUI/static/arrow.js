@@ -1,10 +1,44 @@
 $(document).ready(function(){
-
   function arrow_signal() {
+    $.ajax({
+      url: '/get_arrow',
+      success: function(data) {
+        if (data == "+") {
+          console.log("you will be directed to right");
+
+        }
+        if (data == "-") {
+          console.log("empty file meh");
+        }
+        if (data == "l") {
+          console.log("look to your left");
+        }
+        if (data == "rl") {
+          console.log("look at both sides");
+        }
+      }
+
+    });
+    setTimeout(arrow_signal,10000);
+  }
+  arrow_signal();
+
+    /*$.get('/get_arrow', (data, err) => {
+      if (err) {
+        console.log("no arrow found");
+      } else {
+        console.log("found an arrow");// set image with data
+      }
+    });
+    setTimeout(arrow_signal, 5000);
+  }
+  arrow_signal();*/
+});
+
+  /*function arrow_signal() {
     // Logic first without delay
     $.ajax({
       url:'/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt',
-      type:'HEAD',
       error: function(){
         console.log("file does not exist");
       },
@@ -22,4 +56,4 @@ $(document).ready(function(){
   // Start running
   arrow_signal();
 
-});
+});*/

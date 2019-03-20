@@ -1,7 +1,10 @@
 import os
 from flask import(
-    Flask, flash, g, redirect, render_template, request, session, url_for)
+    Flask, flash, g, redirect, render_template, request, session, url_for, jsonify)
 import sierra
+import time
+from pathlib import Path
+import sqlite3
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -68,16 +71,44 @@ def create_app(test_config=None):
             the_file.write('{}'.format(msg))
         return 200
 
-    @app.route('/get_arrow', methods=['POST'])
+    @app.route('/get_arrow', methods=['GET','POST'])
     def read_arrow():
-        arrow = request.form['arrow_data']
-        #with open("direction.txt", "r") as the_file: MUOKKAAAAA
-        #    arrow = the_file.read()
-        #if os.path.exists("direction.txt"):
-        #    os.remove("direction.txt")
+        #msg = "jie"
+        #return msg
+        arrow = "-"
+        config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        if config.is_file():
+            print("file exists")
+            f = open("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt", "r")
+            #arrow = "{}".format(f.read())
+            arrow = f.read()
+            f.close()
+            time.sleep(4)
+            return arrow
+
+        #if request.method == 'GET':
+        #    print("we are in GET")
+        return arrow
+        #if request.method == 'POST':
+        #    arrow = request.form["arrow_data"]
+        #    print(arrow)
+        #return "arrow saatu"
+        #arrow = request.form['arrow_data']
+        #if request.method == 'GET':
+        #if os.path.isfile("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt"):
+
+        #arrow2 = "{}".format(str(msg))
+        #print("arrow",arrow)
+        #os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        #return "jee"
         #else:
-        #    print("The file doesn't exist")
-        return redirect(url_for('/guidance'), arrow = arrow)
+    #if arrow != "-":
+        #print("arrow tokan kerran", arrow)
+        #print("arrow2 on", arrow2)
+        #arrow = "{}".format(arrow2)
+        #return redirect(url_for('/guidance'), arrow = arrow)
+
+        #return arrow
 
     @app.route('/guidance', methods=['POST', 'GET'])
     def guide():
