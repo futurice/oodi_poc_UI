@@ -26,9 +26,12 @@ def create_app(test_config=None):
 
     @app.route('/main', methods=['POST', 'GET'])
     def search_screen():
-        config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
-        if config.is_file():
-            os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        #config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        #if config.is_file():
+        #    os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        #config2 = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/home.txt")
+        #if config2.is_file():
+        #    os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/home.txt")
         #if request.method == 'POST':
             #searchterm = request.form['searchfield']
             #error = None
@@ -121,10 +124,10 @@ def create_app(test_config=None):
     def go_home():
         msg = "-"
         #look for a file and if the file contains "home" then redirect to the start page
-        config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/home.txt")
+        config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
         if config.is_file():
             print("file exists")
-            f = open("/Users/nulm/Desktop/OodiMir/OodiUI/static/home.txt", "r")
+            f = open("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt", "r")
             msg = f.read()
             msg = msg.rstrip('\n')
             return msg

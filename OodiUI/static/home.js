@@ -9,9 +9,11 @@ $(document).ready(function(){
         if (data == "-") {
           console.log("Home far away");
         }
-        else if (data == "home") {
+        else if (data == "home2") {
           console.log("Back home yay");
-          setTimeout(redirect_home, 5000);
+          window.location.replace("/");
+        //setTimeout(redirect_home, 5000);
+
         }
       }
 

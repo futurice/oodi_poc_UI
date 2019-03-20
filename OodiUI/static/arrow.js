@@ -17,19 +17,22 @@ $(document).ready(function(){
           $("#leftarrow").show();
           $("#lookleft").show();
           console.log("look to your left");
-          setTimeout(redirect, 5000);
+          //setTimeout(redirect, 5000);
         }
         else if (data == "r") {
           $("#rightarrow").show();
           $("#lookright").show();
-          setTimeout(redirect, 5000);
+          //setTimeout(redirect, 5000);
           console.log("you will be directed to right");
         }
         else if (data == "lr") {
           $("#leftrightarrow").show();
           $("#lookboth").show();
-          setTimeout(redirect, 5000);
+          //setTimeout(redirect, 5000);
           console.log("look at both sides");
+        }
+        else if (data == "home") {
+          window.location.replace("/going_home");
         }
       }
 
