@@ -3,23 +3,38 @@ $(document).ready(function(){
     $.ajax({
       url: '/get_arrow',
       success: function(data) {
-        if (data == "+") {
-          console.log("you will be directed to right");
-
-        }
+        var redirect = function(){
+          window.location.replace("http://localhost:5000");
+        };
+        $(".arrow").hide();
+        $(".wayhelp").hide();
         if (data == "-") {
           console.log("empty file meh");
+          $("#uparrow").show();
+          $("#showtheway").show();
         }
-        if (data == "l") {
+        else if (data == "l") {
+          $("#leftarrow").show();
+          $("#lookleft").show();
           console.log("look to your left");
+          setTimeout(redirect, 20000);
         }
-        if (data == "rl") {
+        else if (data == "r") {
+          $("#rightarrow").show();
+          $("#lookright").show();
+          setTimeout(redirect, 20000);
+          console.log("you will be directed to right");
+        }
+        else if (data == "lr") {
+          $("#leftrightarrow").show();
+          $("#lookboth").show();
+          setTimeout(redirect, 20000);
           console.log("look at both sides");
         }
       }
 
     });
-    setTimeout(arrow_signal,10000);
+    setTimeout(arrow_signal,2000);
   }
   arrow_signal();
 

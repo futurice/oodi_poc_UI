@@ -21,13 +21,16 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['POST', 'GET'])
     def search_screen():
-        if request.method == 'POST':
+        config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        if config.is_file():
+            os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
+        #if request.method == 'POST':
             #searchterm = request.form['searchfield']
             #error = None
             #send searchterm forward to the sierra api?
             #if result == "":
             #    error = 'Kirjoita hakukenttään avainsana.'
-            flash(error)
+        #flash(error)
         return render_template('base.html')
 
     @app.route('/term_result', methods=['POST', 'GET'])
@@ -73,22 +76,24 @@ def create_app(test_config=None):
 
     @app.route('/get_arrow', methods=['GET','POST'])
     def read_arrow():
-        #msg = "jie"
-        #return msg
         arrow = "-"
         config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
         if config.is_file():
             print("file exists")
             f = open("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt", "r")
             #arrow = "{}".format(f.read())
+            #os.remove("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
             arrow = f.read()
-            f.close()
-            time.sleep(4)
+            arrow = arrow.rstrip('\n')
+            return arrow
+            #f.close()
+        else:
+            print("return some arrow")
             return arrow
 
         #if request.method == 'GET':
         #    print("we are in GET")
-        return arrow
+        #return arrow
         #if request.method == 'POST':
         #    arrow = request.form["arrow_data"]
         #    print(arrow)
@@ -112,7 +117,7 @@ def create_app(test_config=None):
 
     @app.route('/guidance', methods=['POST', 'GET'])
     def guide():
-        direction = ''
+        #direction = ''
         book_id = request.args.get('id')
         category = request.args.get('category')
         section_id = request.args.get('category_id')
@@ -136,5 +141,5 @@ def create_app(test_config=None):
     #    else:
         #initiate the guiding scenario
         #if signal comes back, go to feedback section
-        return render_template('/search/guidance.html', direction = direction)
+        return render_template('/search/guidance.html')
     return app
