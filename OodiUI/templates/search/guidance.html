@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1 id="showtheway" class="wayhelp" class="hidden">Seuraa minua, vien sinut perille! :-)</h1>
-<h1 id="lookleft" class="wayhelp" class="hidden">Etsimäsi kategoria tai kirja löytyy vasemmalta!</h1>
-<h1 id="lookright" class="wayhelp" class="hidden">Etsimäsi kategoria tai kirja löytyy oikealta!</h1>
-<h1 id="lookboth" class="wayhelp" class="hidden">Etsimäsi kategoria tai kirja on jommalla kummalla puolella! </h1>
+<h1 id="showtheway" class="wayhelp" class="hidden">Seuraa minua!</h1>
+<h1 id="lookleft" class="wayhelp" class="hidden">Katso hylly<br /> vasemmalla</h1>
+<h1 id="lookright" class="wayhelp" class="hidden">Katso hylly<br /> oikealla</h1>
+<h1 id="lookboth" class="wayhelp" class="hidden">Katso molemmat<br />palautuskärryt</h1>
 {% endblock %}
 {#% block body %}
   <script>
   function poll()
 {% endblock %#}
 {% block content %}
-  <img src= {{ url_for('static', filename = 'images/leftarrow.jpg') }} alt="left arrow" height="100" width="100" id="leftarrow" class="arrow" class="hidden">
-  <img src= {{ url_for('static', filename = 'images/rightarrow.jpg') }} alt="right arrow" height="100" width="100" id="rightarrow" class="arrow" class="hidden">
-  <img src= {{ url_for('static', filename = 'images/uparrow.jpg') }} alt="up arrow" height="100" width="100" id="uparrow" class="arrow" class="hidden">
-  <img src= {{ url_for('static', filename = 'images/leftright.jpg') }} alt="left right arrow" height="100" width="100" id="leftrightarrow" class="arrow" class="hidden">
+  <img src= {{ url_for('static', filename = 'images/nuoli_vasen.jpg') }} alt="left arrow" id="leftarrow" class="arrow" class="hidden">
+  <img src= {{ url_for('static', filename = 'images/nuoli_oikea.jpg') }} alt="right arrow" id="rightarrow" class="arrow" class="hidden">
+  <img src= {{ url_for('static', filename = 'images/nuoli_ylos.jpg') }} alt="up arrow" id="uparrow" class="arrow" class="hidden">
+  <img src= {{ url_for('static', filename = 'images/nuoli_molemmat.jpg') }} alt="left right arrow" id="leftrightarrow" class="arrow" class="hidden">
 {% endblock %}
 {% block head %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

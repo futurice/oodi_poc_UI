@@ -6,21 +6,20 @@
 {% endblock %}
 
 {% block content %}
-  Avoin haku
+  <h1 id="search-result">Hyllyssä olevat tulokset haulle <strong>"{{searchterm}}"</strong></h1>
   <br />
-  <form action = "/term_result" method = "POST"> {#this needs to look for new books#}
+  <!--<form action = "/term_result" method = "POST"> {#this needs to look for new books#}
     <input type="text" name="searchfield" size="80">
     <input type="submit" value="Etsi" id="submit-box">
-  </form>
-  <a href="/main" id="back-to-main">Takaisin alkuun.</a>
+  </form>-->
+  <a href="/main" id="back-to-main"><img src="{{ url_for('static', filename='images/back_iso.jpg')}}" alt="takaisin" id="no-sign2"></a>
   <br />
   <br />
   <br />
   <br />
+  <h3 id="advice">Klikkaa laatikkoa!</h3>
   {% for b_id, b_info in books.items() %}
-    <a href="/term_result/guidance_term?title={{b_info['title']}}&id={{b_id}}">{{b_info['title']}}</a>
-    {{b_info['author']}}
-    <br />
+    <a href="/term_result/guidance_term?title={{b_info['title']}}&id={{b_id}}" class=" w3-button w3-light-grey w3-left-align result-boxes"><h3 class="term-results">{{b_info['title']}},&nbsp;Tekijä:&nbsp;{{b_info['author']}}</h3></a>
     {#{% for key in b_info %}
       <a href="http://localhost:5000/term_result/guidance_term">{{b_info['title']}}</a>
     {% endfor %} #}

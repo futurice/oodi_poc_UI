@@ -46,8 +46,7 @@ def create_app(test_config=None):
         searchterm = request.form['searchfield']
         print(searchterm)
         books = sierra.search_shelved_books(searchterm)
-
-        return render_template('search/term_result.html', books = books)
+        return render_template('/search/term_result.html', books = books, searchterm = searchterm)
         #return render_template('search/term_result.html', searchterm = searchterm)
 
     @app.route('/term_result/guidance_term', methods=['POST', 'GET'])
@@ -81,6 +80,8 @@ def create_app(test_config=None):
 
     @app.route('/get_arrow', methods=['GET','POST'])
     def read_arrow():
+        x = request.get_json(silent=True, cache=False)
+        print("type of x is", jsonify(x))
         arrow = "-"
         config = Path("/Users/nulm/Desktop/OodiMir/OodiUI/static/direction.txt")
         if config.is_file():
@@ -92,7 +93,7 @@ def create_app(test_config=None):
             return arrow
             #f.close()
         else:
-            print("return some arrow")
+            print("return upward arrow")
             return arrow
 
     @app.route('/guidance', methods=['POST', 'GET'])

@@ -1,30 +1,43 @@
 <!doctype html>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <section class="content">
   <header>
     {% block header %}
-    <h1 id="header1">{% block title %}Voit etsiä teoksia nimen tai kategorian perusteella!{% endblock %}</h1>
+    <h1 id="search-header1">{% block title %}Etsi tietokirja{% endblock %}</h1>
     {% endblock %}
   </header>
   {% block content %}
-  Avoin haku
   <br />
-  <form action = "/term_result" method = "POST">
-    <input type="text" name="searchfield" size="80" id="search-box">
-    <input type="submit" value="Etsi" id="submit-box">
+  <form action = "/term_result" method = "POST" class="search-field">
+    <input type="text" name="searchfield" id="search-box" placeholder="Kirjan nimi">
+    <input type="image" src="{{ url_for('static', filename='images/eteenpain.jpg')}}" alt="Etsi" value="Etsi" id="submit-box">
   </form>
   <br />
-  <a href="/" id="go-to-start2">Takaisin alkuun</a>
+  <!--<a href="/" id="go-to-start2">Takaisin alkuun</a>-->
   <br />
   <br />
-  Kategoriat
+  <h1 class="search-category">Etsi tietokirjan kategoria</h1>
   <br />
-    <a href="/guidance_category?category=Taidekirjat&id=790" value="Taidekirjat" name="categoryname">Taidekirjat</a>
-    <a href="/guidance_category?category=Matkailu&id=469" value="Matkailu" name="categoryname">Matkailu</a>
-    <a href="/guidance_category?category=Keittokirjat&id=691.1" value="Keittokirjat" name="categoryname">Keittokirjat</a>
-    <a href="/guidance_category?category=Kielet&id=850" value="Kielet" name="categoryname">Kielet</a>
-    <a href="/guidance_category?category=Elämänkerrat&id=990" value="Elämänkerrat" name="categoryname">Elämänkerrat</a>
-    <a href="/guidance_category?category=Historia&id=900" value="Historia" name="categoryname">Historia</a>
+    <a href="/guidance_category?category=Taidekirjat&id=790" value="Taidekirjat" name="categoryname" class="w3-btn w3-green w3-round-large">
+      <div id="arts">Taidekirjat</div>
+      </a>
+    <a href="/guidance_category?category=Matkailu&id=469" value="Matkailu" name="categoryname" class="w3-btn w3-green w3-round-large">
+      <div id="travel">Matkailu</div>
+    </a>
+    <a href="/guidance_category?category=Keittokirjat&id=691.1" value="Keittokirjat" name="categoryname" class="w3-btn w3-green w3-round-large"><div id="cooking">Keittokirjat</div>
+    </a>
+    <br />
+    <br />
+    <br />
+    <a href="/guidance_category?category=Kielet&id=850" value="Kielet" name="categoryname" class="w3-btn w3-green w3-round-large">
+      <div id="languages">Kielet</div>
+    </a>
+    <a href="/guidance_category?category=Elämänkerrat&id=990" value="Elämänkerrat" name="categoryname" class="w3-btn w3-green w3-round-large">
+      <div id="autobiography">Elämän-<br />kerrat</div>
+    </a>
+    <a href="/guidance_category?category=Historia&id=900" value="Historia" name="categoryname" class="w3-btn w3-green w3-round-large"><div id="history">Historia</div>
+    </a>
   {% endblock %}
 </section>
 {% block head %}

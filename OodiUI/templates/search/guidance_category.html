@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
-Lähdetäänkö hakemaan kategoriaa: {{categoryname}} {#Historian tilalle keyword, luultavasti kayta {{}}    #}
+<h1 id="search-for-category"><center>Lähdetäänkö hakemaan kategoriaa<br /> <strong>{{categoryname}}</strong>?</center></h1>
 <br />
 <br />
 {% endblock %}
 
 {% block content %}
-<a href="/main" id="no-sign">Takaisin alkuun.</a>
-<a href="/guidance?category={{categoryname}}&category_id={{section}}" id="yes-sign">Kyllä.</a>
+<a href="/main"><img src="{{ url_for('static', filename='images/back_iso.jpg')}}" alt="takaisin" id="no-sign"></a>
+<a href="/guidance?category={{categoryname}}&category_id={{section}}" id="yes-sign" class="w3-btn w3-green w3-round-large">
+  <div id="yes-child">Etsi kirja</div>
+</a>
 
 {% endblock %}

@@ -2,10 +2,12 @@ $(document).ready(function(){
   function arrow_signal() {
     $.ajax({
       url: '/get_arrow',
+      cache: false,
+      type: "GET",
+      headers: {
+        "cache-control": "no-cache"
+      },
       success: function(data) {
-        var redirect = function(){
-          window.location.replace("/going_home");
-        };
         $(".arrow").hide();
         $(".wayhelp").hide();
         if (data == "-") {
@@ -33,6 +35,11 @@ $(document).ready(function(){
         }
         else if (data == "home") {
           window.location.replace("/going_home");
+        }
+        else {
+          console.log("empty file meh");
+          $("#uparrow").show();
+          $("#showtheway").show();
         }
       }
 
